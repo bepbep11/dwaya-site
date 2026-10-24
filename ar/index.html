@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دوايا DWAYA — برنامج تسيير الصيدليات في المغرب</title>
+<meta name="description" content="دوايا: استلام الطلبيات بمسح وصل التسليم (PDF أو صورة) أو بكاميرا الهاتف، مخزون حسب الدفعة وتاريخ الانتهاء، صندوق بقارئ الرموز الشريطية، السجلات. بالعربية والفرنسية، لصيدليات المغرب.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#00767C">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bepbep11.github.io/dwaya-site/ar/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DWAYA">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:url" content="https://bepbep11.github.io/dwaya-site/ar/">
+<meta property="og:title" content="دوايا DWAYA — برنامج تسيير الصيدليات في المغرب">
+<meta property="og:description" content="استلام الطلبيات بمسح وصل التسليم (PDF أو صورة) أو بكاميرا الهاتف. مخزون حسب الدفعة: ما ينتهي أولًا يخرج أولًا، مع تنبيهات انتهاء الصلاحية. الصندوق والطلبيات والسجلات، بالعربية والفرنسية. مرحلة تجريبية: عرض توضيحي عند الطلب.">
+<meta property="og:image" content="https://bepbep11.github.io/dwaya-site/assets/img/og-ar.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="دوايا، برنامج تسيير الصيدليات في المغرب: شاشة الصندوق مع السلة والمجموع بالدرهم.">
+<meta name="twitter:card" content="summary_large_image">
+<script src="../assets/site-mode.js" defer></script>
+<link rel="alternate" hreflang="fr" href="../index.html">
+<link rel="alternate" hreflang="ar" href="index.html">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/dwaya-symbole-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<script>
+  /* الوضع قبل العرض: الاختيار المحفوظ، وإلا تفضيل النظام. */
+  (function () { var d = document.documentElement, t = null; d.classList.add('js');
+    try { t = localStorage.getItem('dwaya-theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    d.setAttribute('data-theme', t); })();
+</script>
+<script src="../assets/reglages.js" defer></script>
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-scan" viewBox="0 0 24 24"><path d="M3 7V4h3M18 4h3v3M21 17v3h-3M6 20H3v-3M7 8v8M10 8v8M13 8v8M17 8v8"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8zM14 3v5h5M8 12h8M8 15.5h8M8 19h5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2M9 7v6M11 7v6M13 7v6M15 7v6"/></symbol>
+  <symbol id="i-hourglass" viewBox="0 0 24 24"><path d="M6 3h12M6 21h12M7 3c0 5 10 5 10 9s-10 4-10 9M17 3c0 5-10 5-10 9s10 4 10 9"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 9h4l4 4v3h-8"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M5 4h12a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2zM5 18a2 2 0 0 1 2-2h12M9 8h6M9 11h4"/></symbol>
+  <symbol id="i-cash" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9v.01M18 15v.01"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M4 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4zM4 6V5a1 1 0 0 1 1-1h11M16 13h4"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-chain" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 19h10a4.5 4.5 0 0 0 .6-9A6 6 0 0 0 6 11a4 4 0 0 0 1 8zM12 12v5M9.5 14.5 12 12l2.5 2.5"/></symbol>
+  <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01M11 7.5h6M11 16.5h6"/></symbol>
+  <symbol id="i-finger" viewBox="0 0 24 24"><path d="M6.5 6.5A8 8 0 0 1 20 12v1M4 10a8 8 0 0 1 1-2.5M4 14c0 2 .5 4 1.5 5.5M8 12a4 4 0 0 1 8 0v2c0 2.5-.5 5-1.5 7M12 12v3c0 2-.5 4-1.5 6M8 16c0 1.5.3 3 .8 4"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="i-devices" viewBox="0 0 24 24"><rect x="2" y="4" width="15" height="11" rx="1.5"/><path d="M6 19h7M9.5 15v4"/><rect x="17" y="9" width="5" height="11" rx="1"/></symbol>
+  <symbol id="i-printer" viewBox="0 0 24 24"><path d="M7 8V3h10v5M7 17H4v-7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7h-3M7 14h10v7H7z"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol>
+  <symbol id="i-offline" viewBox="0 0 24 24"><path d="M3 3l18 18M8.5 16.5a5 5 0 0 1 6.2-.6M5 12.9a10 10 0 0 1 4.2-2.6M14.5 10.4A10 10 0 0 1 19 13M2 9a15 15 0 0 1 3.6-2.4M10 5.1A15 15 0 0 1 22 9M12 20h.01"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 20l1.5-4A8 8 0 1 1 9 19.5z"/></symbol>
+</svg>
+
+<a class="skip" href="#contenu">الانتقال إلى المحتوى</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#contenu">
+      <!-- Le logo ne se retourne pas en RTL : seule sa place suit le sens de lecture. -->
+      <img class="logo-light" src="../assets/img/dwaya-horizontal-clair-48.webp" srcset="../assets/img/dwaya-horizontal-clair-48.webp 1x, ../assets/img/dwaya-horizontal-clair-48@2x.webp 2x" width="138" height="48" alt="دوايا، الصفحة الرئيسية">
+      <img class="logo-dark" src="../assets/img/dwaya-horizontal-sombre-48.webp" srcset="../assets/img/dwaya-horizontal-sombre-48.webp 1x, ../assets/img/dwaya-horizontal-sombre-48@2x.webp 2x" width="134" height="48" alt="دوايا، الصفحة الرئيسية">
+    </a>
+    <nav class="nav" id="nav" aria-label="القائمة الرئيسية">
+      <ul>
+        <li><a href="#fonctions">الوظائف</a></li>
+        <li><a href="#securite">الأمان</a></li>
+        <li><a href="#offres">العروض</a></li>
+        <li><a href="#questions">أسئلة</a></li>
+        <li><a href="#demo">اطلب عرضًا توضيحيًا</a></li>
+      </ul>
+    </nav>
+    <div class="tools">
+      <a class="icon-btn lang-btn" href="../index.html" hreflang="fr" lang="fr"><svg class="i" aria-hidden="true"><use href="#i-globe"/></svg><span class="long">Français</span><span class="short" aria-hidden="true">FR</span></a>
+      <button class="icon-btn theme-btn" id="theme-btn" type="button" aria-pressed="false" aria-label="الوضع الداكن">
+        <svg class="i i-sun" aria-hidden="true"><use href="#i-sun"/></svg><svg class="i i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav"><svg class="i" aria-hidden="true"><use href="#i-menu"/></svg><span>القائمة</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="contenu" tabindex="-1">
+
+<section class="hero" aria-labelledby="titre">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">برنامج تسيير الصيدلية · المغرب</p>
+      <h1 id="titre">كونتوار أسرع، <span>وصيدلية أكثر تنظيمًا.</span></h1>
+      <p class="lead">يسيّر دوايا الصندوق، والمخزون حسب الدفعة وتاريخ انتهاء الصلاحية، والطلبيات لدى الموزعين، والسجلات التنظيمية. صُمّم للصيدلية المغربية، بالعربية والفرنسية.</p>
+      <ul class="keys" aria-label="أهم المزايا">
+        <li><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-doc"/></svg></span><span><strong>امسح وصل التسليم</strong> PDF أو صورة: تُقرأ السطور تلقائيًا، وتراجعها قبل التأكيد.</span></li>
+        <li><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg></span><span><strong>الاستلام بكاميرا الهاتف</strong> كل علبة تُمسح يُؤشَّر عليها في الوصل.</span></li>
+        <li><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-hourglass"/></svg></span><span><strong>المخزون حسب الدفعة وتاريخ الانتهاء</strong> ما ينتهي أولًا يخرج أولًا، مع تنبيهات قبل التاريخ.</span></li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn-primary" href="#demo">اطلب عرضًا توضيحيًا <svg class="i i-dir" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <ul class="chips" aria-label="باختصار">
+        <li><svg class="i" aria-hidden="true"><use href="#i-cash"/></svg>الأثمان بالدرهم، الضريبة حسب المنتج</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-globe"/></svg>العربية و<span lang="fr">Français</span></li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-devices"/></svg>حاسوب، لوحة، هاتف</li>
+      </ul>
+    </div>
+    <figure class="shot">
+      <div class="frame">
+        <img src="../assets/captures/caisse-ar-1280.webp" srcset="../assets/captures/caisse-ar-640.webp 640w, ../assets/captures/caisse-ar-1280.webp 1280w" sizes="(min-width: 960px) 600px, calc(100vw - 32px)" width="1280" height="760" fetchpriority="high" alt="شاشة الصندوق بالعربية: خانة المسح في الأعلى، سلة من ستة منتجات مع الدفعة وتاريخ الانتهاء، المبلغ المستحق 505,90 درهم، أداء مختلط نقدًا وبالدين.">
+      </div>
+      <figcaption>الصندوق: خانة المسح جاهزة دائمًا، والمبلغ الإجمالي ظاهر طوال الوقت. معطيات وهمية.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="alt" aria-labelledby="t-problemes">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">في الكونتوار</p>
+      <h2 id="t-problemes">ما يحلّه دوايا كل يوم</h2>
+      <p class="lead">زبناء ينتظرون، جهاز مشترك، انقطاعات متكررة: دوايا مصمَّم لهذا الإيقاع.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card problem">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-scan"/></svg></span>الطابور يطول</h3>
+        <p>امسح، حصّل، انتهى. البيع البسيط يتم بلوحة المفاتيح في ثلاث خطوات، والمبلغ يبقى ظاهرًا، ويقرأ القارئ أو كاميرا الهاتف الرمز الشريطي.</p>
+      </article>
+      <article class="card problem">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-hourglass"/></svg></span>علب منتهية الصلاحية تُكتشف متأخرة</h3>
+        <p>كل علبة مرتبطة بدفعة لها تاريخ. البيع يُخرج أولًا الدفعة الأقرب انتهاءً، والصفحة الرئيسية تنبّه إلى الدفعات التي تنتهي خلال 3 أشهر.</p>
+      </article>
+      <article class="card problem">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-truck"/></svg></span>نفاد المخزون وطلبيات منسية</h3>
+        <p>اقتراح طلبية كل يوم حسب الحد الأدنى والأقصى، وصل طلب لكل موزّع، وتذكير عندما لا تُسلَّم طلبية بعد 7 أيام.</p>
+      </article>
+      <article class="card problem">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-book"/></svg></span>سجلات تُكتب باليد</h3>
+        <p>سجل الوصفات وسجل المخدّرات يُملآن لحظة البيع، بترقيم متسلسل دون فراغ، وقابلان للطباعة بصيغة PDF.</p>
+      </article>
+      <article class="card problem">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-cash"/></svg></span>صندوق لا يتطابق في المساء</h3>
+        <p>عدّ حسب الأوراق والقطع النقدية، فارق محسوب تلقائيًا، مصاريف وسحوبات مسجّلة، إغلاق مرقّم وتقرير يومي حسب نسبة الضريبة.</p>
+      </article>
+      <article class="card problem">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-wallet"/></svg></span>ديون الزبناء في دفتر</h3>
+        <p>حساب لكل زبون بسقف محدد، بيع بالدين، تسديدات، كشوف قابلة للطباعة، لائحة المتأخرين وتذكيرات مسجّلة.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- الوظائف: فقط ما هو متوفر فعلًا في التطبيق -->
+<section id="fonctions" aria-labelledby="t-fonctions">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">الوظائف</p>
+      <h2 id="t-fonctions">كل ما تحتاجه لتسيير الصيدلية</h2>
+      <p class="lead">ما هو موصوف هنا يعمل الآن في دوايا. وما سيأتي لاحقًا تجده في «قريبًا».</p>
+    </div>
+
+    <div class="grid grid-3 highlights">
+      <article class="card key">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-doc"/></svg></span>استلام الطلبية بمسح وصل التسليم (PDF أو صورة)</h3>
+        <ul class="checks">
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>صورة بالهاتف أو ملف PDF من الموزّع: تُقرأ التسمية والدفعة وتاريخ الانتهاء والكمية والثمن تلقائيًا.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>لا يدخل شيء إلى المخزون قبل مراجعتك: تصحّح السطور، ثم يؤكّد الصيدلي.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>تتم القراءة على خادم دوايا، دون أي خدمة ذكاء اصطناعي خارجية: لا يُرسَل الوصل إلى أي طرف آخر.</span></li>
+        </ul>
+        <p class="muted small">القراءة التلقائية للوصولات المطبوعة بالفرنسية، تُفعَّل عند بدء الخدمة. وإلا: استيراد Excel أو CSV، أو إدخال يدوي.</p>
+      </article>
+      <article class="card key">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg></span>الاستلام بكاميرا الهاتف</h3>
+        <ul class="checks">
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>يقرأ الهاتف الرمز الشريطي لكل علبة، مثل القارئ.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>يُؤشَّر على سطر الوصل، أو يُضاف إن لم يكن المنتج مطلوبًا؛ ويظهر عدد العلب المستلمة عند كل مسح.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>منتجات التبريد في أعلى اللائحة، لترتيبها أولًا.</span></li>
+        </ul>
+      </article>
+      <article class="card key">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-hourglass"/></svg></span>المخزون حسب الدفعة وتاريخ الانتهاء</h3>
+        <ul class="checks">
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>كل علبة مستلمة تحتفظ بدفعتها وتاريخها: ما ينتهي أولًا يخرج أولًا عند البيع.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>تنبيهات انتهاء الصلاحية: الصفحة الرئيسية تنبّه إلى الدفعات التي تنتهي خلال 3 أشهر، وشاشة «تواريخ الانتهاء» ترتّبها حسب المدة.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>الدفعة المنتهية الصلاحية تُمنع من البيع تلقائيًا.</span></li>
+        </ul>
+      </article>
+    </div>
+
+    <article class="feature">
+      <div>
+        <h3>الصندوق والمبيعات</h3>
+        <ul class="checks">
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>قراءة الرمز الشريطي بالقارئ (USB) أو بكاميرا الهاتف؛ البحث بالاسم.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>كل شيء بلوحة المفاتيح؛ تعليق بيع ريثما يُخدم زبون آخر.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>نقدًا، بطاقة، شيك أو بالدين؛ الباقي يُحسب تلقائيًا.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>وصل 80 مم، فاتورة A4 مع ICE، مرتجعات ووصولات استرجاع.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>الوصفة الطبية مرتبطة بالبيع، مع تنبيه إذا كانت قديمة.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>ملخص مطبوع يساعد المريض على ملء ورقة العلاج.</span></li>
+        </ul>
+      </div>
+      <div class="card steps" aria-labelledby="t-3gestes">
+        <p class="eyebrow" id="t-3gestes">بيع بسيط في ثلاث خطوات</p>
+        <ol>
+          <li><kbd>مسح</kbd><span>تُقرأ العلبة وتُختار الدفعة الأقرب انتهاءً.</span></li>
+          <li><kbd>F12</kbd><span>تحصيل: يظهر المبلغ والباقي للزبون.</span></li>
+          <li><kbd lang="fr">Entrée</kbd><span>تأكيد: يُطبع الوصل وتنتظر خانة المسح الزبون التالي.</span></li>
+        </ol>
+        <p class="muted">مفاتيح أخرى: F2 بحث، F7 وصفة، F9 زبون بالدين، F10 إرجاع.</p>
+      </div>
+    </article>
+
+    <article class="feature flip">
+      <div>
+        <h3>المخزون والدفعات وتواريخ الانتهاء</h3>
+        <ul class="checks">
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>مخزون حسب الدفعة وتاريخ الانتهاء؛ البيع يُخرج الدفعة الأقرب انتهاءً أولًا (FEFO).</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>شاشة «تواريخ الانتهاء» حسب المدة، للطباعة أو التصدير.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>المنتجات تحت الحد الأدنى، النفاد، والمخزون الواجب تسويته.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>بطاقات المنتجات مع PPV وPPH والضريبة؛ استيراد لائحة أدوية؛ مخزون البداية يُدخل حسب الدفعة.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>الكسر والضياع والمنتهي الصلاحية تُسجَّل مع سببها.</span></li>
+        </ul>
+      </div>
+      <figure class="shot">
+        <div class="frame"><img src="../assets/captures/stock-ar-1280.webp" srcset="../assets/captures/stock-ar-640.webp 640w, ../assets/captures/stock-ar-1280.webp 1280w" sizes="(min-width: 960px) 620px, calc(100vw - 32px)" width="1280" height="760" loading="lazy" decoding="async" alt="شاشة المخزون والدفعات بالعربية: عدد المنتجات المتابعة، تحت الحد الأدنى، النفاد؛ لائحة مع أقرب تاريخ انتهاء، ومخدّر مميّز باللون البنفسجي."></div>
+        <figcaption>المخزون والدفعات: أقرب تاريخ انتهاء، المخدّرات ومنتجات التبريد مميّزة. معطيات وهمية.</figcaption>
+      </figure>
+    </article>
+
+    <article class="feature">
+      <div>
+        <h3>الطلبيات والموزعون</h3>
+        <ul class="checks">
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>بطاقات المورّدين: الموزّع الرئيسي، أجل الأداء، التعبئة.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>اقتراح اليوم ووصولات الطلب؛ المساعد يحضّر دون أن يرى الأثمان، والصيدلي يرسل.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>استلام انطلاقًا من وصل التسليم (Excel أو CSV أو PDF)، مع مراقبة الكميات والأثمان والمجاميع.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>استلام مقابل الطلبية، وتتبّع الكميات المتبقية.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>جدول استحقاقات فواتير المورّدين.</span></li>
+        </ul>
+      </div>
+      <figure class="shot">
+        <div class="frame"><img src="../assets/captures/commandes-ar-1280.webp" srcset="../assets/captures/commandes-ar-640.webp 640w, ../assets/captures/commandes-ar-1280.webp 1280w" sizes="(min-width: 960px) 620px, calc(100vw - 32px)" width="1280" height="760" loading="lazy" decoding="async" alt="شاشة اقتراح اليوم بالعربية: 9 منتجات، موردان، 127 علبة؛ لكل منتج المتوفر والحد الأدنى والأقصى والحاجة والتعبئة والكمية المطلوبة."></div>
+        <figcaption>اقتراح اليوم: كميات محسوبة ومقرّبة إلى التعبئة، وصل لكل موزّع. معطيات وهمية.</figcaption>
+      </figure>
+    </article>
+
+    <article class="feature flip">
+      <div>
+        <h3>صندوق المساء</h3>
+        <ul class="checks">
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>فتح الصندوق برصيد البداية؛ مصاريف وسحوبات وإيداعات مع سببها.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>إغلاق بعدّ الأوراق والقطع؛ فوق الحد المختار، يصادق الصيدلي على الفارق.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>إغلاق (Z) مرقّم لكل جهاز، لائحة الإغلاقات ونسخ مطابقة.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>تقرير اليوم حسب الفئة ونسبة الضريبة، وتصدير CSV للمحاسب.</span></li>
+        </ul>
+      </div>
+      <figure class="shot">
+        <div class="frame"><img src="../assets/captures/cloture-ar-1280.webp" srcset="../assets/captures/cloture-ar-640.webp 640w, ../assets/captures/cloture-ar-1280.webp 1280w" sizes="(min-width: 960px) 620px, calc(100vw - 32px)" width="1280" height="760" loading="lazy" decoding="async" alt="نافذة إغلاق الصندوق بالعربية: العدّ حسب الأوراق والقطع، ما يجب أن يحتويه الدرج، الفارق، وزر الإغلاق وطباعة Z."></div>
+        <figcaption>إغلاق الصندوق: عدّ حسب الفئات، فارق محسوب، وطباعة Z. معطيات وهمية.</figcaption>
+      </figure>
+    </article>
+
+    <article class="feature">
+      <div>
+        <h3>الصفحة الرئيسية وتتبّع الصيدلية</h3>
+        <ul class="checks">
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>تحليل المبيعات: رقم المعاملات، الهامش الإجمالي، متوسط السلة، مقارنة مع السنة الماضية، المنتجات الأكثر مبيعًا (للصيدلي فقط).</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>«ما يجب فعله الآن»: تواريخ انتهاء قريبة، طلبيات غير مسلّمة، استلامات للمراقبة، جرد المخدّرات، زبناء متأخرون.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>كل سطر يقود مباشرة إلى الشاشة التي تحلّ المشكل.</span></li>
+        </ul>
+      </div>
+      <figure class="shot">
+        <div class="frame"><img src="../assets/captures/analyse-ar-1280.webp" srcset="../assets/captures/analyse-ar-640.webp 640w, ../assets/captures/analyse-ar-1280.webp 1280w" sizes="(min-width: 960px) 620px, calc(100vw - 32px)" width="1280" height="760" loading="lazy" decoding="async" alt="شاشة تحليل المبيعات والهامش بالعربية: رقم المعاملات مع الضريبة ودونها، الهامش الإجمالي، عدد التذاكر، متوسط السلة، مع المقارنة بالسنة الماضية."></div>
+        <figcaption>تحليل المبيعات والهامش، شهرًا بشهر. معطيات وهمية.</figcaption>
+      </figure>
+    </article>
+
+    <article class="feature flip">
+      <div>
+        <h3>الوصفات والسجلات</h3>
+        <ul class="checks">
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>سجل الوصفات يُرقَّم تلقائيًا مع كل بيع بوصفة.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>سجل المخدّرات: المريض، الطبيب، مراقبة الكمية القصوى، ورقم السجل على الوصل.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>لا يصرف المساعد مخدّرًا إلا برمز الصيدلي.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>جرد شهري للمخدّرات؛ طباعة السجلين بصيغة PDF.</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>سجلات متسلسلة: أي تعديل لاحق يُكتشف ويُنبَّه إليه.</span></li>
+        </ul>
+      </div>
+      <div class="card register" aria-labelledby="t-registre">
+        <p class="eyebrow" id="t-registre">سجل المخدّرات · مثال وهمي</p>
+        <ul class="checks">
+          <li><span class="tag-narc">B</span><span><strong>رقم <bdi>2026-000127</bdi></strong> · صرف بوصفة طبية · علبة واحدة · <bdi lang="fr">Dr K. Alaoui</bdi> · هوية المريض مشفّرة</span></li>
+          <li><span class="tag-narc">B</span><span><strong>رقم <bdi>2026-000128</bdi></strong> · استلام من الموزّع · 5 علب · الرصيد 9</span></li>
+          <li><span class="tag-narc">B</span><span><strong>جرد أكتوبر</strong> · المعدود 9 · المنتظر 9 · لا فارق</span></li>
+        </ul>
+      </div>
+    </article>
+
+    <h3 class="sr-only">وأيضًا</h3>
+    <div class="grid grid-3" style="margin-block-start:24px">
+      <article class="card">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg></span>الفريق والأجهزة</h3>
+        <p>أدوار الصيدلي والمساعد ومسؤول النظام. تغيير المستخدم برمز شخصي، قفل الجهاز، أجهزة الكونتوار مسجّلة. التكاليف والهوامش لا تظهر أبدًا للمساعد.</p>
+      </article>
+      <article class="card">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-finger"/></svg></span>Face ID والبصمة</h3>
+        <p>الدخول بـ Face ID أو البصمة أو Windows Hello بفضل مفاتيح المرور (passkeys)، إلى جانب كلمة السر والرمز.</p>
+      </article>
+      <article class="card">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-globe"/></svg></span>العربية والفرنسية</h3>
+        <p>الواجهة كاملة باللغتين، والعربية من اليمين إلى اليسار. كل جهاز يحتفظ بلغته.</p>
+      </article>
+      <article class="card">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-devices"/></svg></span>على كل الشاشات</h3>
+        <p>حاسوب الكونتوار أو اللوحة أو الهاتف، عبر المتصفح. وضع فاتح أو داكن.</p>
+      </article>
+      <article class="card">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-printer"/></svg></span>عتاد عادي</h3>
+        <p>قارئ رموز USB، طابعة وصولات 80 مم، ودرج نقود موصول بالطابعة. دون برنامج تشغيل خاص.</p>
+      </article>
+      <article class="card">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-wallet"/></svg></span>الزبناء والدين</h3>
+        <p>حسابات الزبناء، السقف، البيع والتسديد، كشوف A4 أو 80 مم، المتأخرون والتذكيرات. يُطلب رمز الصيدلي عند تجاوز السقف.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="securite" class="alt" aria-labelledby="t-securite">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">الأمان</p>
+      <h2 id="t-securite">معطيات مرضاكم محمية بجدية</h2>
+      <p class="lead">السجلات والوصفات والديون تحتوي على معطيات صحية. هذا ما يفعله دوايا فعليًا لحمايتها.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg></span>معطيات المرضى مشفّرة</h3>
+        <p>هويات المرضى في سجل المخدّرات مشفّرة (AES-256) بمفتاح محفوظ خارج قاعدة البيانات. نسخة مسروقة من القاعدة لا تكشفها. الصيدلي وحده يطّلع عليها، وكل اطلاع مسجَّل.</p>
+      </article>
+      <article class="card">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-chain"/></svg></span>سجل لا يمكن تغييره</h3>
+        <p>الدخول، الإلغاءات، تغيير الأثمان، فوارق الصندوق، الاطلاع على معطيات المرضى: كل شيء يُكتب في سجل كل سطر فيه مرتبط بما قبله. أي حذف أو تعديل يُكتشف.</p>
+      </article>
+      <article class="card">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-cloud"/></svg></span>نسخ احتياطية مشفّرة</h3>
+        <p>تُنجز نسخة احتياطية مشفّرة كل ليلة. ونسخة خارج الخادم مبرمجة.</p>
+      </article>
+      <article class="card">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-server"/></svg></span>معطيات منفصلة لكل صيدلية</h3>
+        <p>لكل صيدلية قاعدة بياناتها الخاصة. لا تختلط معطياتها أبدًا بمعطيات صيدلية أخرى.</p>
+      </article>
+      <article class="card">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-finger"/></svg></span>Face ID دون معطيات بيومترية</h3>
+        <p>يتحقق هاتفكم أو حاسوبكم من الوجه أو البصمة. لا يتلقى دوايا أي صورة أو بصمة، بل مفتاحًا رقميًا فقط. على جهاز مشترك، يُستعمل الهاتف الشخصي أو مفتاح أمان.</p>
+      </article>
+      <article class="card">
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg></span>لكلٍّ صلاحياته</h3>
+        <p>العمليات الحساسة (مخدّر، تخفيض كبير، فارق في الصندوق) تتطلب رمز الصيدلي. المساعد لا يرى التكاليف ولا الهوامش.</p>
+      </article>
+    </div>
+    <p class="note">يساعد دوايا على حماية المعطيات، لكنه لا يعوّض إجراءاتكم: طلب الإذن لدى اللجنة الوطنية لمراقبة حماية المعطيات ذات الطابع الشخصي (CNDP) تقوم به الصيدلية، ونحن نوفّر المعلومات التقنية اللازمة.</p>
+  </div>
+</section>
+
+<!-- العروض : أثمان استرشادية، المصدر الوحيد هو prix.json ؛ المحتوى هنا احتياطي (دون JavaScript أو إن غاب الملف).
+     « HT, TVA en sus » : à confirmer par l'expert-comptable. -->
+<section id="offres" aria-labelledby="t-offres">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">العروض</p>
+      <h2 id="t-offres">اشتراك شهري، دون مفاجآت</h2>
+      <p class="lead">التطبيق الكامل باشتراك شهري. مرحلة تجريبية: الولوج بدعوة فقط.</p>
+    </div>
+    <div class="plans">
+      <article class="card plan" aria-labelledby="p-essentiel">
+        <h3 id="p-essentiel">الأساسي</h3>
+        <p class="price"><bdi>250 درهم</bdi> <small>شهريًا، دون احتساب الضريبة</small></p>
+        <ul class="checks">
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>التطبيق كاملًا، عبر الإنترنت</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>معطيات منفصلة عن معطيات الصيدليات الأخرى</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>نسخة احتياطية مشفّرة يوميًا</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>التحديثات مشمولة</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>الدعم</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Face ID والبصمة مشمولان</strong></span></li>
+        </ul>
+        <a class="btn btn-ghost" href="#demo">اطلب عرضًا توضيحيًا</a>
+      </article>
+      <article class="card plan is-soon" aria-labelledby="p-securite-plus">
+        <p><span class="soon">قريبًا</span></p>
+        <h3 id="p-securite-plus">أمان+</h3>
+        <ul class="checks">
+          <li><svg class="i" aria-hidden="true"><use href="#i-spark"/></svg><span>كل ما في الأساسي</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-spark"/></svg><span>نسخ احتياطية أكثر تواترًا، مع نسخة خارج الصيدلية</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-spark"/></svg><span>متابعة أمنية منتظمة</span></li>
+        </ul>
+        <p class="muted">قيد الإعداد: غير متوفر بعد.</p>
+      </article>
+      <article class="card plan is-soon" aria-labelledby="p-ia">
+        <p><span class="soon">قريبًا</span></p>
+        <h3 id="p-ia">الذكاء الاصطناعي</h3>
+        <p class="price text">حسب الطلب</p>
+        <ul class="checks">
+          <li><svg class="i" aria-hidden="true"><use href="#i-spark"/></svg><span>قراءة الوصفات الطبية (OCR)</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-spark"/></svg><span>اقتراحات للطلبيات</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-spark"/></svg><span>تنبيهات ذكية</span></li>
+        </ul>
+        <p class="muted">قيد الإعداد: غير متوفر بعد.</p>
+      </article>
+    </div>
+    <div class="extras">
+      <article class="card" aria-labelledby="p-installation-locale">
+        <h3 id="p-installation-locale"><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-server"/></svg></span>خيار التثبيت المحلي</h3>
+        <p>مبرمج، غير متوفر بعد: حاسوب خادم صغير يُثبَّت في الصيدلية، لمواصلة العمل أثناء انقطاع الإنترنت.</p>
+        <p class="price text">قريبًا</p>
+      </article>
+      <article class="card" aria-labelledby="p-mes">
+        <h3 id="p-mes"><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg></span>التشغيل الأوّلي</h3>
+        <p>مرة واحدة عند البداية: التثبيت، استيراد منتجاتكم، إنشاء حسابات الفريق، والتكوين.</p>
+        <p class="price"><bdi>من 3 000 إلى 5 000 درهم</bdi> <small>دون احتساب الضريبة</small></p>
+      </article>
+    </div>
+    <p class="note">الأثمان دون احتساب الضريبة على القيمة المضافة، وتُضاف إليها الضريبة. مرحلة تجريبية: الولوج بدعوة فقط.</p>
+  </div>
+</section>
+
+<section class="alt" aria-labelledby="t-bientot">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">قريبًا</p>
+      <h2 id="t-bientot">ما سيأتي بعد ذلك</h2>
+      <p class="lead">غير متوفر اليوم. نعلن عنه لتعرفوا إلى أين يتجه دوايا.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card">
+        <p><span class="soon">قريبًا</span></p>
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-card"/></svg></span>الأداء من طرف الغير</h3>
+        <p>التكفل في إطار التأمين الإجباري عن المرض (CNSS وCNOPS) والتعاضديات، مع تتبّع التعويضات. مبرمج في إصدار قادم.</p>
+      </article>
+      <article class="card">
+        <p><span class="soon">قريبًا</span></p>
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-offline"/></svg></span>صندوق احتياطي دون إنترنت</h3>
+        <p>مواصلة المبيعات البسيطة أثناء انقطاع الإنترنت، ثم إرسال كل شيء عند عودة الشبكة.</p>
+      </article>
+      <article class="card">
+        <p><span class="soon">قريبًا</span></p>
+        <h3><span class="badge-ico"><svg class="i" aria-hidden="true"><use href="#i-spark"/></svg></span>عرض الذكاء الاصطناعي</h3>
+        <p>قراءة الوصفات، اقتراحات الطلبيات، وتنبيهات ذكية.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="questions" aria-labelledby="t-questions">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">أسئلة</p>
+      <h2 id="t-questions">أسئلة متكررة</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>أين توجد معطياتي؟</summary>
+        <div class="answer"><p>على خادم يديره ناشر دوايا، في قاعدة بيانات منفصلة لكل صيدلية. هويات المرضى في سجل المخدّرات مشفّرة، وتُنجز نسخة احتياطية مشفّرة كل يوم. الاستضافة النهائية قيد الاختيار. الإجراء لدى اللجنة الوطنية لمراقبة حماية المعطيات ذات الطابع الشخصي (CNDP) تقوم به الصيدلية، ونحن نوفّر المعلومات التقنية اللازمة.</p></div>
+      </details>
+      <details>
+        <summary>وماذا لو انقطع الإنترنت؟</summary>
+        <div class="answer"><p>دوايا يحتاج إلى الإنترنت. ننصح باتصال ثانٍ احتياطي (موجّه 4G يتولى الأمر تلقائيًا): هكذا تمرّ أغلب الانقطاعات دون أن تُلاحَظ. صندوق احتياطي دون إنترنت وتثبيت داخل الصيدلية مبرمجان، وغير متوفرين بعد (انظر «قريبًا»).</p></div>
+      </details>
+      <details>
+        <summary>كيف يتم التكوين؟</summary>
+        <div class="answer"><p>هو جزء من التشغيل الأوّلي: نكوّن الفريق على عمله الحقيقي (البيع، الاستلام، الإغلاق). شاشة الصندوق تُستعمل بلوحة المفاتيح، وكل اختصار مكتوب بجانب الزر.</p></div>
+      </details>
+      <details>
+        <summary>أترك برنامجًا آخر: ماذا عن منتجاتي؟</summary>
+        <div class="answer"><p>نستورد لائحة منتجاتكم من ملف (Excel أو CSV) مُصدَّر من برنامجكم القديم. ويُدخل مخزون البداية حسب الدفعة وتاريخ الانتهاء. لا يُنقل سجل مبيعات البرنامج القديم: يبقى متاحًا للاطلاع فيه.</p></div>
+      </details>
+      <details>
+        <summary>ما العتاد الذي أحتاجه؟</summary>
+        <div class="answer"><p>حاسوب بمتصفح حديث لكل جهاز، قارئ رموز USB، طابعة وصولات 80 مم، وإن رغبتم درج نقود موصول بالطابعة. ويمكن للهاتف أن يقرأ الرموز الشريطية بكاميرته.</p></div>
+      </details>
+      <details>
+        <summary>هل الأداء من طرف الغير (AMO) مُدبَّر؟</summary>
+        <div class="answer"><p>ليس بعد. يطبع دوايا حاليًا ملخصًا يساعد المريض على ملء ورقة العلاج. التكفل في إطار AMO (CNSS وCNOPS) والتعاضديات مبرمج في إصدار قادم.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Aucun envoi vers un serveur. Contact à définir dans assets/reglages.js ; sans JavaScript, remplacer aussi CONTACT_A_DEFINIR dans l'attribut action. -->
+
+<section id="demo" class="demo alt" aria-labelledby="t-demo">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">عرض توضيحي</p>
+      <h2 id="t-demo">اطلب عرضًا توضيحيًا</h2>
+      <p class="lead">30 دقيقة، في صيدليتكم أو عن بُعد، بمعطيات وهمية. اتركوا معلوماتكم وسنتصل بكم.</p>
+      <p class="notice" id="demo-note" role="status" hidden></p>
+      <p class="muted">هذه الاستمارة لا تحفظ أي شيء على هذا الموقع: تحضّر رسالة بريد إلكتروني أو واتساب ترسلونها بأنفسكم. لا تكتبوا فيها أي معلومة عن مرضاكم.</p>
+    </div>
+    <form class="card" id="demo-form" action="mailto:bepbep8ebbep@gmail.com" method="post" enctype="text/plain" novalidate>
+      <div class="row-2">
+        <div class="field"><label for="f-pharmacie">اسم الصيدلية</label><input id="f-pharmacie" name="pharmacie" required autocomplete="organization"></div>
+        <div class="field"><label for="f-ville">المدينة</label><input id="f-ville" name="ville" required autocomplete="address-level2"></div>
+      </div>
+      <div class="row-2">
+        <div class="field"><label for="f-nom">اسمكم</label><input id="f-nom" name="nom" required autocomplete="name"></div>
+        <div class="field"><label for="f-tel">الهاتف</label><input id="f-tel" name="telephone" type="tel" dir="ltr" required autocomplete="tel" inputmode="tel" placeholder="06 00 00 00 00"></div>
+      </div>
+      <div class="row-2">
+        <div class="field"><label for="f-postes">عدد أجهزة الصندوق</label>
+          <select id="f-postes" name="postes"><option value="">لا أعرف</option><option>1</option><option>2</option><option>3</option><option value="4+">4 أو أكثر</option></select></div>
+        <div class="field"><label for="f-offre">العرض الذي يهمّكم</label>
+          <select id="f-offre" name="offre"><option value="">نقرّر معًا</option><option value="Essentiel">الأساسي</option></select></div>
+      </div>
+      <div class="field"><label for="f-message">رسالة <span class="muted">(اختياري)</span></label><textarea id="f-message" name="message" placeholder="برنامجكم الحالي، الأوقات المناسبة للاتصال…"></textarea></div>
+      <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit" name="via" value="email"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>الإرسال بالبريد الإلكتروني</button>
+        <button class="btn btn-ghost" type="submit" name="via" value="whatsapp"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>الإرسال عبر واتساب</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img class="logo-light" src="../assets/img/dwaya-horizontal-clair-48.webp" srcset="../assets/img/dwaya-horizontal-clair-48.webp 1x, ../assets/img/dwaya-horizontal-clair-48@2x.webp 2x" width="104" height="36" alt="دوايا" loading="lazy">
+      <img class="logo-dark" src="../assets/img/dwaya-horizontal-sombre-48.webp" srcset="../assets/img/dwaya-horizontal-sombre-48.webp 1x, ../assets/img/dwaya-horizontal-sombre-48@2x.webp 2x" width="101" height="36" alt="دوايا" loading="lazy">
+      <p>برنامج تسيير الصيدليات في المغرب. © 2026 دوايا. لقطات الشاشة: نماذج بمعطيات وهمية.</p>
+      <p class="legal">دوايا DWAYA — مرحلة تجريبية — للتواصل: <a href="mailto:bepbep8ebbep@gmail.com" dir="ltr">bepbep8ebbep@gmail.com</a> · <a href="https://wa.me/212661425552" rel="noopener" target="_blank">واتساب <bdi dir="ltr">+212 661 425 552</bdi></a></p>
+    </div>
+    <nav class="links" aria-label="روابط أسفل الصفحة">
+      <a href="#fonctions">الوظائف</a><a href="#securite">الأمان</a><a href="#offres">العروض</a><a href="#questions">أسئلة</a><a href="../index.html" hreflang="fr" lang="fr">Français</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

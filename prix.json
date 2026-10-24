@@ -1,0 +1,162 @@
+{
+  "version": 1,
+  "devise": "DH",
+  "mention": {
+    "fr": "Prix HT, TVA en sus. Phase pilote : accès sur invitation.",
+    "ar": "الأثمان دون احتساب الضريبة على القيمة المضافة، وتُضاف إليها الضريبة. مرحلة تجريبية: الولوج بدعوة فقط."
+  },
+  "packs": [
+    {
+      "id": "essentiel",
+      "ordre": 0,
+      "visible": true,
+      "mis_en_avant": false,
+      "nom": {
+        "fr": "Essentiel",
+        "ar": "الأساسي"
+      },
+      "periodicite": "mois",
+      "prix": 250,
+      "prix_barre": null,
+      "promo": null,
+      "prix_texte": null,
+      "points": {
+        "fr": [
+          "Toute l'application, en ligne",
+          "Données séparées de celles des autres pharmacies",
+          "Sauvegarde chiffrée quotidienne",
+          "Mises à jour comprises",
+          "Support",
+          "Face ID et empreinte inclus"
+        ],
+        "ar": [
+          "التطبيق كاملًا، عبر الإنترنت",
+          "معطيات منفصلة عن معطيات الصيدليات الأخرى",
+          "نسخة احتياطية مشفّرة يوميًا",
+          "التحديثات مشمولة",
+          "الدعم",
+          "Face ID والبصمة مشمولان"
+        ]
+      }
+    },
+    {
+      "id": "securite-plus",
+      "ordre": 10,
+      "visible": true,
+      "mis_en_avant": false,
+      "nom": {
+        "fr": "Sécurité+",
+        "ar": "أمان+"
+      },
+      "periodicite": "bientot",
+      "prix": null,
+      "prix_barre": null,
+      "promo": null,
+      "prix_texte": null,
+      "points": {
+        "fr": [
+          "Tout Essentiel",
+          "Sauvegardes plus fréquentes, avec une copie hors de la pharmacie",
+          "Suivi de sécurité régulier"
+        ],
+        "ar": [
+          "كل ما في الأساسي",
+          "نسخ احتياطية أكثر تواترًا، مع نسخة خارج الصيدلية",
+          "متابعة أمنية منتظمة"
+        ]
+      },
+      "description": {
+        "fr": "En préparation : pas encore disponible.",
+        "ar": "قيد الإعداد: غير متوفر بعد."
+      }
+    },
+    {
+      "id": "ia",
+      "ordre": 30,
+      "visible": true,
+      "mis_en_avant": false,
+      "nom": {
+        "fr": "IA",
+        "ar": "الذكاء الاصطناعي"
+      },
+      "periodicite": "bientot",
+      "prix": null,
+      "prix_barre": null,
+      "promo": null,
+      "prix_texte": {
+        "fr": "Sur demande",
+        "ar": "حسب الطلب"
+      },
+      "description": {
+        "fr": "En préparation : pas encore disponible.",
+        "ar": "قيد الإعداد: غير متوفر بعد."
+      },
+      "points": {
+        "fr": [
+          "Lecture des ordonnances (OCR)",
+          "Suggestions de commandes",
+          "Alertes intelligentes"
+        ],
+        "ar": [
+          "قراءة الوصفات الطبية (OCR)",
+          "اقتراحات للطلبيات",
+          "تنبيهات ذكية"
+        ]
+      }
+    },
+    {
+      "id": "installation-locale",
+      "ordre": 40,
+      "visible": true,
+      "mis_en_avant": false,
+      "icone": "server",
+      "nom": {
+        "fr": "Option Installation locale",
+        "ar": "خيار التثبيت المحلي"
+      },
+      "periodicite": "devis",
+      "prix": null,
+      "prix_barre": null,
+      "promo": null,
+      "prix_texte": {
+        "fr": "Bientôt",
+        "ar": "قريبًا"
+      },
+      "description": {
+        "fr": "Prévue, pas encore disponible : un mini-PC serveur installé dans la pharmacie, pour continuer à travailler pendant une coupure internet.",
+        "ar": "مبرمج، غير متوفر بعد: حاسوب خادم صغير يُثبَّت في الصيدلية، لمواصلة العمل أثناء انقطاع الإنترنت."
+      },
+      "points": {
+        "fr": [],
+        "ar": []
+      }
+    },
+    {
+      "id": "mise-en-service",
+      "ordre": 50,
+      "visible": true,
+      "mis_en_avant": false,
+      "icone": "users",
+      "nom": {
+        "fr": "Mise en service",
+        "ar": "التشغيل الأوّلي"
+      },
+      "periodicite": "unique",
+      "prix": null,
+      "prix_barre": null,
+      "promo": null,
+      "prix_texte": {
+        "fr": "3 000 à 5 000 DH",
+        "ar": "من 3 000 إلى 5 000 درهم"
+      },
+      "description": {
+        "fr": "Une fois, au démarrage : installation, import de vos produits, création des comptes de l'équipe et formation.",
+        "ar": "مرة واحدة عند البداية: التثبيت، استيراد منتجاتكم، إنشاء حسابات الفريق، والتكوين."
+      },
+      "points": {
+        "fr": [],
+        "ar": []
+      }
+    }
+  ]
+}
