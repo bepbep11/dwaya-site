@@ -135,13 +135,13 @@ html[lang="ar"] .eyebrow { letter-spacing: 0; text-transform: none; font-size: .
 .btn-primary:hover { filter: brightness(1.08); }
 .btn-ghost { background: var(--surface); color: var(--link); border-color: var(--line-strong); }
 .btn-ghost:hover { background: var(--soft); }
-.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-block: 24px 8px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-block: 8px; }
 @media (max-width: 479px) { .actions .btn { flex: 1 1 100%; } }
 
 /* Accroche */
-.hero { padding-block: 40px 56px; }
-.hero .wrap { display: grid; gap: 36px; align-items: center; }
-@media (min-width: 960px) { .hero { padding-block: 72px 88px; } .hero .wrap { grid-template-columns: 1fr 1.15fr; gap: 48px; } }
+.hero { padding-block: 0 56px; }
+.hero .wrap { display: grid; gap: 36px; align-items: center; padding-block-start: 24px; }
+@media (min-width: 960px) { .hero { padding-block: 0 88px; } .hero .wrap { grid-template-columns: 1fr 1.15fr; gap: 48px; padding-block-start: 40px; align-items: start; } }
 .hero h1 span { color: var(--link); }
 .chips { list-style: none; padding: 0; margin: 20px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .chips li { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: var(--soft); color: var(--link); font-weight: 600; font-size: .92rem; }
@@ -160,11 +160,21 @@ html[lang="ar"] .eyebrow { letter-spacing: 0; text-transform: none; font-size: .
 .shot .frame { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface); }
 .shot figcaption { margin-block-start: 10px; font-size: .9rem; color: var(--muted); }
 
-/* Visuel « comptoir du Maroc » sous l'accroche (découpe sans texte de l'affiche DWAYATI, emballages sans marque) */
-.maroc { grid-column: 1 / -1; margin: 0; }
-.maroc img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface); }
-.maroc figcaption { margin-block-start: 10px; font-size: .9rem; color: var(--muted); }
-@media (min-width: 960px) { .maroc img { aspect-ratio: 3 / 1; object-fit: cover; object-position: 50% 45%; } }
+/* Visuel « comptoir du Maroc » en tête de page, juste sous le menu, avant l'accroche
+   (découpe sans texte de l'affiche DWAYATI, emballages sans marque ; aucun texte posé dessus).
+   Téléphone : pleine largeur bord à bord, scène entière (boîtes, flacon, douchette). Grand écran : bandeau 3,4:1 arrondi.
+   Les boutons suivent le titre et le texte (avant les 3 points forts) : ils restent dans le premier écran du téléphone. */
+.maroc { margin: 0 auto; max-width: 1160px; }
+.maroc img { display: block; width: 100%; height: auto; aspect-ratio: 1254 / 485; object-fit: cover; background: var(--bg-alt); }
+.maroc figcaption { margin-block-start: 6px; padding-inline: 16px; font-size: .85rem; line-height: 1.4; color: var(--muted); }
+@media (min-width: 720px) {
+  .maroc { padding-inline: 24px; padding-block-start: 20px; }
+  .maroc img { border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow); }
+  .maroc figcaption { padding-inline: 0; }
+}
+@media (min-width: 960px) {
+  .maroc img { aspect-ratio: 3.4 / 1; object-position: 50% 50%; }
+}
 :root[data-theme="dark"] .maroc img { filter: brightness(.9); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .maroc img { filter: brightness(.9); } }
 
