@@ -147,11 +147,18 @@ html[lang="ar"] .eyebrow { letter-spacing: 0; text-transform: none; font-size: .
 .chips li { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: var(--soft); color: var(--link); font-weight: 600; font-size: .92rem; }
 .chips .i { width: 18px; height: 18px; }
 
-/* Captures d'écran (maquettes, données fictives) */
+/* Captures d'écran (vraies captures de l'application, données fictives) : version claire ou sombre selon le thème de la page */
 .shot { margin: 0; }
+.shot .frame img { display: block; width: 100%; height: auto; }
+.shot .frame img.shot-dark { display: none; }
+:root[data-theme="dark"] .shot .frame img.shot-light { display: none; }
+:root[data-theme="dark"] .shot .frame img.shot-dark { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .shot .frame img.shot-light { display: none; }
+  :root:not([data-theme]) .shot .frame img.shot-dark { display: block; }
+}
 .shot .frame { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface); }
 .shot figcaption { margin-block-start: 10px; font-size: .9rem; color: var(--muted); }
-:root[data-theme="dark"] .shot img { filter: brightness(.92); }
 
 /* Visuel « comptoir du Maroc » sous l'accroche (découpe sans texte de l'affiche DWAYATI, emballages sans marque) */
 .maroc { grid-column: 1 / -1; margin: 0; }
