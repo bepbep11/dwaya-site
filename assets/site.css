@@ -153,6 +153,14 @@ html[lang="ar"] .eyebrow { letter-spacing: 0; text-transform: none; font-size: .
 .shot figcaption { margin-block-start: 10px; font-size: .9rem; color: var(--muted); }
 :root[data-theme="dark"] .shot img { filter: brightness(.92); }
 
+/* Visuel « comptoir du Maroc » sous l'accroche (découpe sans texte de l'affiche DWAYATI, emballages sans marque) */
+.maroc { grid-column: 1 / -1; margin: 0; }
+.maroc img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface); }
+.maroc figcaption { margin-block-start: 10px; font-size: .9rem; color: var(--muted); }
+@media (min-width: 960px) { .maroc img { aspect-ratio: 3 / 1; object-fit: cover; object-position: 50% 45%; } }
+:root[data-theme="dark"] .maroc img { filter: brightness(.9); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .maroc img { filter: brightness(.9); } }
+
 /* Cartes */
 .grid { display: grid; gap: 16px; }
 @media (min-width: 640px) { .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

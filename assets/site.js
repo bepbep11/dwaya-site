@@ -10,7 +10,7 @@
     dark: 'الوضع الداكن',
     missing: 'وسيلة التواصل لم تُحدَّد بعد (CONTACT_A_DEFINIR).',
     required: 'المرجو ملء الحقول الإلزامية: اسم الصيدلية، المدينة، الاسم والهاتف.',
-    subject: 'طلب عرض توضيحي لـ DWAYA',
+    subject: 'طلب عرض توضيحي لـ DWAYATI',
     labels: ['الصيدلية', 'المدينة', 'الاسم', 'الهاتف', 'عدد الأجهزة', 'العرض', 'الرسالة'],
     sentMail: 'يُفتح برنامج البريد مع رسالتكم. أرسلوها من هناك.',
     sentWa: 'يُفتح واتساب مع رسالتكم. أرسلوها من هناك.',
@@ -27,7 +27,7 @@
     dark: 'Thème sombre',
     missing: 'Le contact n’est pas encore défini (CONTACT_A_DEFINIR).',
     required: 'Merci de remplir les champs obligatoires : pharmacie, ville, nom et téléphone.',
-    subject: 'Demande de démonstration DWAYA',
+    subject: 'Demande de démonstration DWAYATI',
     labels: ['Pharmacie', 'Ville', 'Nom', 'Téléphone', 'Nombre de postes', 'Offre', 'Message'],
     sentMail: 'Votre messagerie s’ouvre avec la demande : il reste à l’envoyer.',
     sentWa: 'WhatsApp s’ouvre avec la demande : il reste à l’envoyer.',
@@ -407,7 +407,8 @@
       window.open('https://wa.me/' + encodeURIComponent(target) + '?text=' + encodeURIComponent(ref + T.subject + '\n' + body()), '_blank', 'noopener');
       say(T.sentWa, false);
     } else {
-      window.location.href = 'mailto:' + target + '?subject=' + encodeURIComponent(ref + T.subject) + '&body=' + encodeURIComponent((ref ? ref.trim() + '\n' : '') + body());
+      // Crochet de test : les vérifications automatiques interceptent l'adresse au lieu d'ouvrir la messagerie du poste.
+      (window.DWAYA_NAVIGATE || function (u) { window.location.href = u; })('mailto:' + target + '?subject=' + encodeURIComponent(ref + T.subject) + '&body=' + encodeURIComponent((ref ? ref.trim() + '\n' : '') + body()));
       say(T.sentMail, false);
     }
   });
